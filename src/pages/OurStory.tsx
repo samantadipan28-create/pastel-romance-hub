@@ -3,6 +3,7 @@ import { ArrowLeft, Heart, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FloatingElements } from "@/components/FloatingElements";
 import { TimelineNode } from "@/components/TimelineNode";
+import moonBackground from "@/assets/moon-september-28.jpg";
 
 const OurStory = () => {
   const storyMilestones = [
@@ -39,7 +40,14 @@ const OurStory = () => {
   ];
 
   return (
-    <div className="min-h-screen gradient-romantic relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Moon background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: `url(${moonBackground})` }}
+      />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/60" />
       <FloatingElements />
       
       <div className="relative z-10 container max-w-3xl mx-auto px-4 py-8">
