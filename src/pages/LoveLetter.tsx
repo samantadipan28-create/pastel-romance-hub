@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Heart, Mail, MailOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FloatingElements } from "@/components/FloatingElements";
 
@@ -27,94 +27,70 @@ const LoveLetter = () => {
           >
             A Letter for You 💌
           </h1>
+          <p className="text-muted-foreground font-nunito opacity-0 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+            Tap the envelope to open it
+          </p>
         </header>
 
-        {/* Letter content */}
+        {/* Envelope */}
         <div className="flex-1 flex items-center justify-center">
-          <div className="w-full">
-            {/* Envelope / Open prompt */}
-            {!isOpen ? (
-              <button
-                onClick={() => setIsOpen(true)}
-                className="w-full group opacity-0 animate-slide-up"
-                style={{ animationDelay: "0.2s" }}
+          <div 
+            className="envelope-wrapper relative cursor-pointer opacity-0 animate-slide-up"
+            style={{ animationDelay: "0.3s" }}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <div className={`envelope relative w-[280px] h-[210px] sm:w-[320px] sm:h-[240px] ${isOpen ? 'envelope-open' : ''}`}>
+              {/* Letter inside */}
+              <div className={`letter absolute right-[15%] w-[70%] bg-card text-left shadow-lg rounded-sm transition-all duration-1000 ease-in-out overflow-hidden ${
+                isOpen 
+                  ? 'bottom-[80px] sm:bottom-[100px] scale-[1.3] sm:scale-150 z-[3]' 
+                  : 'bottom-0 scale-100 z-[1] h-[75%]'
+              }`}
+              style={{ 
+                transitionDelay: isOpen ? '1s' : '0s',
+                height: isOpen ? 'auto' : '75%',
+                maxHeight: isOpen ? '300px' : '75%',
+                padding: isOpen ? '16px 12px' : '12px 8px'
+              }}
               >
-                <div className="bg-card/90 backdrop-blur-sm rounded-3xl p-12 shadow-card border-2 border-border/50 hover:border-primary/50 hover:shadow-glow transition-all duration-300 hover:scale-[1.02]">
-                  <div className="flex flex-col items-center gap-6">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-rose/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-rose/30 transition-all">
-                      <Mail size={48} className="text-primary group-hover:scale-110 transition-transform" />
-                    </div>
-                    <div className="text-center">
-                      <p className="font-pacifico text-2xl text-foreground mb-2">
-                        Tap to open
-                      </p>
-                      <p className="text-muted-foreground font-nunito">
-                        A letter written from my heart to yours
-                      </p>
-                    </div>
-                    <Heart 
-                      size={24} 
-                      className="text-primary animate-pulse-heart" 
-                      fill="currentColor"
-                    />
-                  </div>
-                </div>
-              </button>
-            ) : (
-              <div 
-                className="bg-card/95 backdrop-blur-sm rounded-3xl p-8 md:p-10 shadow-card border-2 border-primary/30 animate-fade-in"
-              >
-                {/* Opened envelope icon */}
-                <div className="flex justify-center mb-6">
-                  <MailOpen size={32} className="text-primary" />
-                </div>
-
-                {/* Letter text */}
-                <div className="font-nunito text-foreground space-y-4 leading-relaxed text-lg">
-                  <p className="font-pacifico text-2xl text-primary">My Dearest Love,</p>
-                  
-                  <p>
+                <div className="font-nunito text-foreground text-[9px] sm:text-[10px] leading-relaxed">
+                  <p className="font-pacifico text-primary text-sm mb-2">My Dearest Love,</p>
+                  <p className="mb-1">
                     I've been trying to find the right words to tell you how much you mean to me, 
                     but honestly? Words could never be enough.
                   </p>
-
-                  <p>
+                  <p className="mb-1">
                     From the moment you came into my life, everything changed. The colors became 
-                    brighter, the days felt shorter, and my heart found a reason to beat a little faster.
+                    brighter, and my heart found a reason to beat faster.
                   </p>
-
-                  <p>
-                    You are my best friend, my confidant, my partner in everything. When I'm with you, 
-                    I feel like the luckiest person in the entire world. Your love has shown me what 
+                  <p className="mb-1">
+                    You are my best friend, my partner in everything. Your love has shown me what 
                     true happiness feels like.
                   </p>
-
-                  <p>
-                    I promise to love you through all our tomorrows. To make you laugh when you're sad, 
-                    to hold your hand when you're scared, and to remind you every single day just how 
-                    amazing you are.
+                  <p className="mb-2">
+                    I promise to love you through all our tomorrows. 💕
                   </p>
-
-                  <p>
-                    Thank you for choosing me. Thank you for loving me. Thank you for being you.
-                  </p>
-
-                  <div className="pt-4">
-                    <p className="font-pacifico text-xl text-primary">
-                      Forever and always yours,
-                    </p>
-                    <p className="font-pacifico text-lg text-muted-foreground mt-2">
-                      With all my love 💕
-                    </p>
-                  </div>
-
-                  {/* Hidden easter egg */}
-                  <p className="text-xs text-muted-foreground/50 text-center pt-6 hover:text-primary transition-colors cursor-pointer">
-                    P.S. You're absolutely adorable when you read this 😘
+                  <p className="font-pacifico text-primary text-xs">
+                    Forever yours ❤️
                   </p>
                 </div>
               </div>
-            )}
+            </div>
+            {/* Heart seal */}
+            <div 
+              className={`heart-seal absolute top-1/2 left-1/2 w-[18px] h-[18px] bg-primary z-[4] shadow-lg cursor-pointer transition-all duration-500 ${
+                isOpen 
+                  ? 'opacity-0 scale-0' 
+                  : 'opacity-100 scale-100'
+              }`}
+              style={{ 
+                transform: 'translate(-50%, -20%) rotate(45deg)',
+                transitionDelay: isOpen ? '0s' : '1s'
+              }}
+            >
+              <div className="absolute w-[18px] h-[18px] bg-primary rounded-full -top-[9px]" />
+              <div className="absolute w-[18px] h-[18px] bg-primary rounded-full -right-[9px]" />
+            </div>
           </div>
         </div>
 
@@ -133,6 +109,60 @@ const LoveLetter = () => {
           </div>
         )}
       </div>
+
+      <style>{`
+        .envelope-wrapper {
+          background: hsl(var(--card));
+          box-shadow: 0 0 40px hsl(var(--primary) / 0.3);
+          border-radius: 4px;
+        }
+        
+        .envelope::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          z-index: 2;
+          border-top: 120px solid hsl(var(--muted));
+          border-right: 140px solid transparent;
+          border-left: 140px solid transparent;
+          transform-origin: top;
+          transition: all 0.5s ease-in-out 0.7s;
+        }
+        
+        @media (min-width: 640px) {
+          .envelope::before {
+            border-top: 140px solid hsl(var(--muted));
+            border-right: 160px solid transparent;
+            border-left: 160px solid transparent;
+          }
+        }
+        
+        .envelope::after {
+          content: "";
+          position: absolute;
+          z-index: 2;
+          width: 0px;
+          height: 0px;
+          border-top: 120px solid transparent;
+          border-right: 140px solid hsl(var(--secondary));
+          border-bottom: 90px solid hsl(var(--secondary));
+          border-left: 140px solid hsl(var(--secondary));
+        }
+        
+        @media (min-width: 640px) {
+          .envelope::after {
+            border-top: 140px solid transparent;
+            border-right: 160px solid hsl(var(--secondary));
+            border-bottom: 100px solid hsl(var(--secondary));
+            border-left: 160px solid hsl(var(--secondary));
+          }
+        }
+        
+        .envelope-open::before {
+          transform: rotateX(180deg);
+          z-index: 0;
+        }
+      `}</style>
     </div>
   );
 };
