@@ -35,48 +35,99 @@ const LoveTree = ({ glowIntensity = "normal" }: LoveTreeProps) => {
 
   return (
     <div className="relative w-full max-w-sm mx-auto h-80 md:h-96">
-      {/* Tree trunk */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-28 md:h-32">
-        <svg viewBox="0 0 40 120" className="w-full h-full">
-          <path
-            d="M15 120 Q12 80 18 50 Q20 30 20 20 Q20 30 22 50 Q28 80 25 120 Z"
-            fill="hsl(25, 40%, 35%)"
-            className="drop-shadow-lg"
-          />
-          {/* Branches */}
-          <path
-            d="M18 50 Q5 45 8 35"
-            stroke="hsl(25, 40%, 35%)"
-            strokeWidth="4"
-            fill="none"
-            className="animate-sway"
-          />
-          <path
-            d="M22 50 Q35 45 32 35"
-            stroke="hsl(25, 40%, 35%)"
-            strokeWidth="4"
-            fill="none"
-            className="animate-sway"
-            style={{ animationDelay: "0.5s" }}
-          />
-          <path
-            d="M19 35 Q10 30 12 22"
-            stroke="hsl(25, 40%, 35%)"
-            strokeWidth="3"
-            fill="none"
-            className="animate-sway"
-            style={{ animationDelay: "0.3s" }}
-          />
-          <path
-            d="M21 35 Q30 30 28 22"
-            stroke="hsl(25, 40%, 35%)"
-            strokeWidth="3"
-            fill="none"
-            className="animate-sway"
-            style={{ animationDelay: "0.8s" }}
-          />
-        </svg>
-      </div>
+      {/* Tree trunk and branches */}
+      <svg 
+        viewBox="0 0 200 300" 
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-64 md:w-56 md:h-72"
+      >
+        {/* Main trunk */}
+        <path
+          d="M90 300 Q85 250 92 180 Q95 140 100 100 Q105 140 108 180 Q115 250 110 300 Z"
+          fill="hsl(25, 35%, 30%)"
+          className="drop-shadow-lg"
+        />
+        {/* Trunk texture */}
+        <path
+          d="M95 280 Q97 260 94 240"
+          stroke="hsl(25, 30%, 25%)"
+          strokeWidth="2"
+          fill="none"
+          opacity="0.5"
+        />
+        <path
+          d="M103 270 Q105 250 102 230"
+          stroke="hsl(25, 30%, 25%)"
+          strokeWidth="2"
+          fill="none"
+          opacity="0.5"
+        />
+        
+        {/* Main branches */}
+        <path
+          d="M95 160 Q60 150 40 120"
+          stroke="hsl(25, 35%, 30%)"
+          strokeWidth="8"
+          fill="none"
+          strokeLinecap="round"
+          className="animate-sway"
+        />
+        <path
+          d="M105 160 Q140 150 160 120"
+          stroke="hsl(25, 35%, 30%)"
+          strokeWidth="8"
+          fill="none"
+          strokeLinecap="round"
+          className="animate-sway"
+          style={{ animationDelay: "0.5s" }}
+        />
+        <path
+          d="M98 130 Q70 110 50 80"
+          stroke="hsl(25, 35%, 30%)"
+          strokeWidth="6"
+          fill="none"
+          strokeLinecap="round"
+          className="animate-sway"
+          style={{ animationDelay: "0.3s" }}
+        />
+        <path
+          d="M102 130 Q130 110 150 80"
+          stroke="hsl(25, 35%, 30%)"
+          strokeWidth="6"
+          fill="none"
+          strokeLinecap="round"
+          className="animate-sway"
+          style={{ animationDelay: "0.8s" }}
+        />
+        
+        {/* Smaller branches */}
+        <path
+          d="M100 110 Q85 90 70 60"
+          stroke="hsl(25, 35%, 30%)"
+          strokeWidth="4"
+          fill="none"
+          strokeLinecap="round"
+          className="animate-sway"
+          style={{ animationDelay: "0.2s" }}
+        />
+        <path
+          d="M100 110 Q115 90 130 60"
+          stroke="hsl(25, 35%, 30%)"
+          strokeWidth="4"
+          fill="none"
+          strokeLinecap="round"
+          className="animate-sway"
+          style={{ animationDelay: "0.6s" }}
+        />
+        <path
+          d="M100 90 Q100 70 100 50"
+          stroke="hsl(25, 35%, 30%)"
+          strokeWidth="3"
+          fill="none"
+          strokeLinecap="round"
+          className="animate-sway"
+          style={{ animationDelay: "0.4s" }}
+        />
+      </svg>
 
       {/* Heart leaves */}
       {leaves.map((leaf) => (
