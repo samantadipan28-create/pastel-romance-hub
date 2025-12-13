@@ -305,3 +305,20 @@
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
 .stagger-6 { animation-delay: 0.6s; }
+
+/* Tree sway animation */
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.animate-sway {
+  animation: sway 3s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Gentle float for heart leaves */
+@keyframes float-gentle {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-5px); }
+}

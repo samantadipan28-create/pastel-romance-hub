@@ -1,183 +1,146 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Heart, Gift, Sparkles, Star, Cat } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarHeart, Sparkles } from "lucide-react";
+import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { FloatingElements } from "@/components/FloatingElements";
-
-const surpriseItems = [
-  { id: 1, icon: Heart, message: "You make my heart so happy! 💕", color: "text-primary" },
-  { id: 2, icon: Star, message: "You're my favorite person ever! ⭐", color: "text-lavender" },
-  { id: 3, icon: Sparkles, message: "You light up my whole world! ✨", color: "text-rose" },
-  { id: 4, icon: Cat, message: "Did you know? Cats purr at a frequency that promotes healing! 🐱", color: "text-peach" },
-  { id: 5, icon: Heart, message: "I think about you all the time! 💭", color: "text-primary" },
-  { id: 6, icon: Star, message: "You deserve all the happiness! 🌟", color: "text-accent" },
-];
+import LoveTree from "@/components/LoveTree";
+import DateCountdown from "@/components/DateCountdown";
+import { cn } from "@/lib/utils";
 
 const Surprise = () => {
-  const [revealedItems, setRevealedItems] = useState<Set<number>>(new Set());
-  const [mainGiftOpened, setMainGiftOpened] = useState(false);
-  const [floatingHearts, setFloatingHearts] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  const [dateError, setDateError] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const revealItem = (id: number) => {
-    setRevealedItems(new Set([...revealedItems, id]));
+  const handleDateSelect = (date: Date | undefined) => {
+    if (!date) return;
     
-    // Add floating heart at random position
-    const newHeart = {
-      id: Date.now(),
-      x: Math.random() * 100,
-      y: Math.random() * 50 + 25,
-    };
-    setFloatingHearts([...floatingHearts, newHeart]);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     
-    setTimeout(() => {
-      setFloatingHearts(hearts => hearts.filter(h => h.id !== newHeart.id));
-    }, 1500);
+    if (date < today) {
+      setDateError("Pick a future date 😌");
+      return;
+    }
+    
+    setDateError(null);
+    setSelectedDate(date);
+    setIsOpen(false);
   };
 
   return (
-    <div className="min-h-screen gradient-romantic relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[hsl(260,40%,15%)] via-[hsl(280,30%,20%)] to-[hsl(300,25%,25%)]">
       <FloatingElements />
       
-      {/* Floating hearts on tap */}
-      {floatingHearts.map(heart => (
-        <div
-          key={heart.id}
-          className="fixed pointer-events-none z-50 animate-heart-rise"
-          style={{ left: `${heart.x}%`, top: `${heart.y}%` }}
-        >
-          <Heart size={24} className="text-primary" fill="currentColor" />
-        </div>
-      ))}
+      {/* Stars background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white/60 rounded-full animate-sparkle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`,
+            }}
+          />
+        ))}
+      </div>
       
-      <div className="relative z-10 container max-w-xl mx-auto px-4 py-8">
+      <div className="relative z-10 container max-w-xl mx-auto px-4 py-8 min-h-screen flex flex-col">
         {/* Header */}
-        <header className="text-center mb-8">
+        <header className="text-center mb-6">
           <Link to="/home">
-            <Button variant="ghost" size="sm" className="mb-4 opacity-0 animate-fade-in">
+            <Button variant="ghost" size="sm" className="mb-4 text-white/80 hover:text-white hover:bg-white/10 opacity-0 animate-fade-in">
               <ArrowLeft size={16} className="mr-2" />
               Back to Home
             </Button>
           </Link>
-
-          <h1 
-            className="text-3xl md:text-4xl font-pacifico text-foreground mb-2 opacity-0 animate-slide-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            Surprise! 🎁
-          </h1>
-          
-          <p 
-            className="text-muted-foreground font-nunito opacity-0 animate-slide-up"
-            style={{ animationDelay: "0.2s" }}
-          >
-            Tap around to discover hidden messages!
-          </p>
         </header>
 
-        {/* Main gift */}
-        <div 
-          className="mb-8 opacity-0 animate-slide-up"
-          style={{ animationDelay: "0.3s" }}
-        >
-          <button
-            onClick={() => setMainGiftOpened(true)}
-            disabled={mainGiftOpened}
-            className="w-full"
+        {/* Main content */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-6">
+          {/* Love Tree */}
+          <div 
+            className="w-full opacity-0 animate-fade-in"
+            style={{ animationDelay: "0.2s" }}
           >
-            <div className={`
-              bg-card/90 backdrop-blur-sm rounded-3xl p-8 
-              shadow-card border-2 transition-all duration-300
-              ${mainGiftOpened 
-                ? "border-primary/50 shadow-glow" 
-                : "border-border/50 hover:border-primary/30 hover:shadow-glow hover:scale-[1.02]"
-              }
-            `}>
-              {!mainGiftOpened ? (
-                <div className="flex flex-col items-center gap-4">
-                  <Gift 
-                    size={64} 
-                    className="text-primary animate-bounce-gentle" 
-                  />
-                  <p className="font-pacifico text-xl text-foreground">
-                    Tap me! 🎀
-                  </p>
-                </div>
-              ) : (
-                <div className="text-center animate-fade-in">
-                  <p className="font-pacifico text-2xl text-primary mb-3">
-                    You are my greatest gift! 💝
-                  </p>
-                  <p className="text-muted-foreground font-nunito">
-                    Every day with you feels like unwrapping a present. 
-                    You bring so much joy to my life!
-                  </p>
-                  <div className="flex justify-center gap-2 mt-4">
-                    {[...Array(3)].map((_, i) => (
-                      <Heart 
-                        key={i}
-                        size={20} 
-                        className="text-primary animate-pulse-heart" 
-                        fill="currentColor"
-                        style={{ animationDelay: `${i * 0.2}s` }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </button>
-        </div>
+            <LoveTree glowIntensity={selectedDate ? "bright" : "normal"} />
+          </div>
 
-        {/* Hidden items grid */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          {surpriseItems.map((item, index) => {
-            const Icon = item.icon;
-            const isRevealed = revealedItems.has(item.id);
-            
-            return (
-              <button
-                key={item.id}
-                onClick={() => revealItem(item.id)}
-                className={`
-                  aspect-square rounded-2xl transition-all duration-300
-                  opacity-0 animate-slide-up
-                  ${isRevealed 
-                    ? "bg-card/90 shadow-card border-2 border-primary/30" 
-                    : "bg-card/50 hover:bg-card/80 border-2 border-border/30 hover:border-primary/20 hover:scale-105"
-                  }
-                `}
-                style={{ animationDelay: `${0.4 + index * 0.1}s` }}
-              >
-                {isRevealed ? (
-                  <div className="p-2 flex flex-col items-center justify-center h-full animate-fade-in">
-                    <Icon size={24} className={`${item.color} mb-1`} fill="currentColor" />
-                    <p className="text-xs text-muted-foreground font-nunito text-center leading-tight">
-                      {item.message}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center h-full">
-                    <Sparkles size={20} className="text-muted-foreground/50 animate-sparkle" />
-                  </div>
-                )}
-              </button>
-            );
-          })}
+          {/* Date selection or countdown */}
+          <div 
+            className="w-full text-center opacity-0 animate-slide-up"
+            style={{ animationDelay: "0.4s" }}
+          >
+            {!selectedDate ? (
+              <div className="space-y-4">
+                <h1 className="font-pacifico text-2xl md:text-3xl text-white/90">
+                  When do you want our next date to be?
+                </h1>
+                
+                <Popover open={isOpen} onOpenChange={setIsOpen}>
+                  <PopoverTrigger asChild>
+                    <Button 
+                      variant="romantic" 
+                      size="lg"
+                      className="group shadow-glow"
+                    >
+                      <CalendarHeart size={20} className="mr-2" />
+                      Pick a date
+                      <Sparkles size={16} className="ml-2 opacity-70 group-hover:opacity-100 transition-opacity" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0 bg-card border-primary/30" align="center">
+                    <Calendar
+                      mode="single"
+                      selected={selectedDate}
+                      onSelect={handleDateSelect}
+                      initialFocus
+                      className={cn("p-3 pointer-events-auto")}
+                    />
+                    {dateError && (
+                      <p className="text-center text-sm text-destructive pb-3 font-nunito">
+                        {dateError}
+                      </p>
+                    )}
+                  </PopoverContent>
+                </Popover>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <h1 className="font-pacifico text-2xl md:text-3xl text-white/90 animate-fade-in">
+                  Counting down to our next date 💖
+                </h1>
+                <p className="text-white/60 font-nunito text-sm">
+                  {format(selectedDate, "EEEE, MMMM do, yyyy")}
+                </p>
+                <div className="mt-6">
+                  <DateCountdown targetDate={selectedDate} />
+                </div>
+                
+                {/* Reset button */}
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  onClick={() => setSelectedDate(undefined)}
+                  className="text-white/50 hover:text-white/80 hover:bg-white/10 mt-4"
+                >
+                  Change date
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
-
-        {/* Progress hint */}
-        <p 
-          className="text-center text-sm text-muted-foreground/70 font-nunito mb-6 opacity-0 animate-fade-in"
-          style={{ animationDelay: "1s" }}
-        >
-          Found {revealedItems.size} of {surpriseItems.length} surprises! 
-          {revealedItems.size === surpriseItems.length && " 🎉 You found them all!"}
-        </p>
 
         {/* Next page link */}
         <div 
-          className="text-center opacity-0 animate-fade-in"
-          style={{ animationDelay: "1.2s" }}
+          className="text-center pt-8 opacity-0 animate-fade-in"
+          style={{ animationDelay: "0.8s" }}
         >
           <Link to="/ending">
             <Button variant="romantic" size="lg" className="group">
