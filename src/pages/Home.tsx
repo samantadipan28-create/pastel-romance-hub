@@ -1,6 +1,7 @@
 import { Heart, BookHeart, Scroll, Gift, Sparkles } from "lucide-react";
 import { FloatingElements } from "@/components/FloatingElements";
 import { NavigationCard } from "@/components/NavigationCard";
+import { CatEasterEgg } from "@/components/CatEasterEgg";
 
 const Home = () => {
   const navigationItems = [
@@ -77,11 +78,14 @@ const Home = () => {
           className="text-center opacity-0 animate-fade-in"
           style={{ animationDelay: "0.8s" }}
         >
-          <p className="text-sm text-muted-foreground/70 font-nunito flex items-center justify-center gap-2">
+          <p className="text-sm text-muted-foreground/70 font-nunito flex items-center justify-center gap-2 mb-6">
             Made with 
             <Heart size={14} className="text-primary animate-pulse-heart" fill="currentColor" />
             just for you
           </p>
+          
+          {/* Cat Easter Egg */}
+          <CatEasterEgg />
         </div>
       </div>
     </div>
