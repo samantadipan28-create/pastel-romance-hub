@@ -8,25 +8,25 @@ const Home = () => {
     {
       to: "/our-story",
       title: "Our Story",
-      description: "A journey through our beautiful memories together",
+      description: "Journey till now!",
       icon: BookHeart,
     },
     {
       to: "/reasons",
       title: "Reasons I Love You",
-      description: "All the little and big things that make you special",
+      description: "I already says these things to you but here's a powerpoint presentation if you want it to be professionally said 🤓👆🏻",
       icon: Heart,
     },
     {
       to: "/love-letter",
       title: "Love Letter",
-      description: "Words written straight from my heart to yours",
+      description: "Somethings I can't say directly and since you like the things I write for you 😭",
       icon: Scroll,
     },
     {
       to: "/surprise",
-      title: "Surprise",
-      description: "Something special just for you...",
+      title: "A Random Timer",
+      description: "It's just a random timer you don't need to open it 🤷🏻‍♂️",
       icon: Gift,
     },
   ];
@@ -48,14 +48,14 @@ const Home = () => {
             className="text-4xl md:text-5xl font-pacifico text-foreground mb-4 opacity-0 animate-slide-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Welcome, My Love! 💖
+            Welcome, Vedika! 💖
           </h1>
           
           <p 
             className="text-lg text-muted-foreground font-nunito max-w-md mx-auto opacity-0 animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
-            I'm so glad you're here. Explore these pages I made just for you...
+            Just a small thing I made for you... 
           </p>
         </header>
 

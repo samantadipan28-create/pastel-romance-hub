@@ -9,7 +9,7 @@ const OurStory = () => {
   const storyMilestones = [
     {
       date: "The Beginning",
-      title: "When We First Met",
+      title: "28th September 2025",
       description: "That magical moment when our paths crossed and everything changed. I knew from that instant that you were someone special.",
       icon: "sparkle" as const,
     },

@@ -2,14 +2,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const privateFacts = [
-  "You always steal my hoodie 🥹",
-  "Your laugh is my favorite sound 💕",
-  "You can't sleep without holding my hand 🤭",
-  "You pretend to be mad but smile anyway 😏",
-  "You eat all my fries but say you're not hungry 🍟",
-  "Your morning voice is so cute 🥰",
-  "You get jealous of my pillow 😂",
-  "You dance when you think no one's watching 💃",
+  "You know cats eat their owner after they are dead 🤷🏻‍♂️",
+  "My favourite thing about you is when you call me every morning and wake me up... Always a good day 😌",
+  "I am very jealous of your pillow btw😒",
 ];
 
 const CuteCat = () => (
@@ -22,7 +17,7 @@ const CuteCat = () => (
       strokeWidth="4"
       strokeLinecap="round"
       animate={{ d: ["M85 55 Q95 45 90 35 Q88 30 85 32", "M85 55 Q100 50 95 38 Q93 33 90 35", "M85 55 Q95 45 90 35 Q88 30 85 32"] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
     />
     
     {/* Body */}
