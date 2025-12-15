@@ -44,7 +44,7 @@ const Ending = () => {
           className="text-4xl md:text-5xl lg:text-6xl font-pacifico text-foreground mb-6 opacity-0 animate-slide-up leading-tight"
           style={{ animationDelay: "0.2s" }}
         >
-          Can't wait to see you 😘
+          This is just a small thing I made for you.. I hope you liked it 💖
         </h1>
 
         <p 
@@ -58,7 +58,7 @@ const Ending = () => {
           className="text-lg text-primary font-pacifico mb-8 opacity-0 animate-slide-up"
           style={{ animationDelay: "0.6s" }}
         >
-          It's just a new beginning 💕
+          It's just a beginning 💕
         </p>
 
         {/* Floating hearts row */}

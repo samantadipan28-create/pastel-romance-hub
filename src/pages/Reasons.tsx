@@ -6,38 +6,38 @@ import { FloatingElements } from "@/components/FloatingElements";
 
 const reasons = [
   {
-    title: "Your Smile",
-    description: "The way your smile lights up the entire room. It's the first thing I fell in love with, and it still makes my heart skip a beat every single time.",
+    title: "I Live for you",
+    description: "It's hard for me to survive without you now, You're mine and just mine, I am shamelessly selfish and posessive about you.",
     emoji: "😊",
   },
   {
-    title: "Your Laugh",
-    description: "That beautiful, infectious laugh of yours. It's my favorite sound in the whole world, and I'll do anything just to hear it.",
+    title: "Your Voice",
+    description: "Your voice is something I can not describe in words genuinely, I mean it makes me feel like I am high on some drugs yet at the same time it keeps me sane.. idk it's such a weird feeling but I love it and I am addicted to your voice ",
     emoji: "😄",
   },
   {
-    title: "Your Kindness",
-    description: "How caring and gentle you are with everyone around you. Your heart is so pure and loving - it inspires me to be a better person.",
+    title: "The Way you care about me",
+    description: "It makes me kinda emotional when I think about that there's someone out there who cares about my existence, Your caring is a little violent but idc I love it honestly!",
     emoji: "💝",
   },
   {
     title: "Your Strength",
-    description: "Even when things get tough, you stay strong and keep going. Your resilience amazes me every day.",
+    description: "You are such a dedicated person and you so many ambitions it's honestly so inspiring and gives so much motivation to do something in my life so that I can be deserving to have you",
     emoji: "💪",
   },
   {
-    title: "Our Inside Jokes",
-    description: "All those silly moments only we understand. Nobody else gets our humor, and that makes it even more special.",
+    title: "Our Little Inside Jokes",
+    description: "The silly things we laugh about on calls, like the cat fact joke (scroll at the bottom of the home page in the end), that biohazardous room-mate of yours, we literally laugh on anything and I also just shamelessly joke continously because I wanna hear you laugh and giggle",
     emoji: "🤭",
   },
   {
     title: "How You Make Me Feel",
-    description: "Safe, loved, understood, and truly happy. With you, I can be completely myself. You're my home.",
+    description: "The way you make me feel seen, heared, loved.. I feel so much complete with you in my life. You are my Home.",
     emoji: "🏠",
   },
   {
-    title: "Everything About You",
-    description: "And so many more reasons... Your quirks, your dreams, your passions, the way you look at me. I love every single thing about you.",
+    title: "∞",
+    description: "There's so many more things, I could just go on and on about but I think I should save some for our date.",
     emoji: "✨",
   },
 ];

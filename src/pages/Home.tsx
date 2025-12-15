@@ -55,7 +55,7 @@ const Home = () => {
             className="text-lg text-muted-foreground font-nunito max-w-md mx-auto opacity-0 animate-slide-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Just a small thing I made for you... 
+            A small little corner on the internet dedicated for you 
           </p>
         </header>
 

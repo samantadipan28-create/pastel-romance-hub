@@ -56,22 +56,19 @@ const LoveLetter = () => {
                 <div className="font-nunito text-foreground text-[9px] sm:text-[10px] leading-relaxed">
                   <p className="font-pacifico text-primary text-sm mb-2">My Dearest Love,</p>
                   <p className="mb-1">
-                    I've been trying to find the right words to tell you how much you mean to me, 
-                    but honestly? Words could never be enough.
+                    I know you like to read the things I write for you so I decided to include this thing for you to read. 
                   </p>
                   <p className="mb-1">
-                    From the moment you came into my life, everything changed. The colors became 
-                    brighter, and my heart found a reason to beat faster.
+                    Before you came into my life, I was genuinely literally moving on autopilot and I had no idea what I was doing. You are the one who brought colour to my life and I am forever grateful for that.
                   </p>
                   <p className="mb-1">
-                    You are my best friend, my partner in everything. Your love has shown me what 
-                    true happiness feels like.
+                    When we meet I wanna hold you in my arms and not leave you ever and just kiss you for the longest time and I just wanna be yours forever if possible and be by your side.
                   </p>
                   <p className="mb-2">
                     I promise to love you through all our tomorrows. 💕
                   </p>
                   <p className="font-pacifico text-primary text-xs">
-                    Forever yours ❤️
+                    Your Dipu ❣️
                   </p>
                 </div>
               </div>
@@ -102,7 +99,7 @@ const LoveLetter = () => {
           >
             <Link to="/surprise">
               <Button variant="romantic" size="lg" className="group">
-                I have a surprise for you
+                Click for the Next page !
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
