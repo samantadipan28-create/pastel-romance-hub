@@ -36,12 +36,27 @@ const OurStory = () => {
       icon: "heart" as const,
     },
     {
+      date: "Our Second Date",
+      title: "14th January 2026",
+      description:
+        "The Second date was kinda risky since your parents got to know recewntly about us and your father warned me not to be in any contact with you.. but look at us 😭😭, we don't fear anything as long as we're together 😘",
+      icon: "sparkle" as const,
+    },
+    {
+      date: "Our Third Date",
+      title: "4th February 2026",
+      description:
+        "The third date was like really really wild, I didn't expect your sudden burst of horniness and I bet you enjoyed me doing what i did 🌚",
+      icon: "sparkle" as const,
+    },
+    {
       date: "Today & Beyond",
       title: "Till ∞",
       description:
         "I know we don't have much yet, this is just the beginning but I am sure that I need to update this thing pretty often because of all the things we planned and I know we're gonna do it one day 🤞🏻.",
       icon: "sparkle" as const,
     },
+    
   ];
 
   return (
